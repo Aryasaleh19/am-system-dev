@@ -127,12 +127,19 @@
             Al-Muhajirin System Login
         </h2>
 
+        <?php if (session()->getFlashdata('error')) : ?>
+            <div id="loginAlert" class="alert alert-danger " role="alert">
+                <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                <span id="alertMessage"><?= session()->getFlashdata('error'); ?></span>
+            </div>
+        <?php endif; ?>
+
         <form method="post" action="<?= base_url('login') ?>">
             <div class="mb-3">
                 <label for="username" class="form-label">
                     <i class="bi bi-person me-1"></i>Username
                 </label>
-                <input type="text" class="form-control" id="username" value="sumadi" readonly>
+                <input type="text" class="form-control" id="username" value="sumadi" name="email-username">
             </div>
 
             <div class="mb-3">
@@ -147,15 +154,25 @@
                 </div>
             </div>
 
-            <div class="security-question">
-                <div class="d-flex justify-content-between align-items-center">
-                    <h6><i class="bi bi-calculator me-1"></i>Security Question:</h6>
-                    <button type="button" class="refresh-btn" onclick="generateNewQuestion()">
+            <div class="captcha-container">
+                <div class="captcha-question mb-2">
+                    <?php
+                    $angka1 = rand(1, 10);
+                    $angka2 = rand(1, 10);
+                    $captcha_result = $angka1 + $angka2;
+                    session()->set('captcha_login', $captcha_result);
+                    ?>
+                    <i class="bi bi-calculator text-primary-custom"></i>
+                    <span>Security Question: What is <strong id="num1"><?= $angka1 ?></strong> + <strong id="num2"><?= $angka2 ?></strong>?</span>
+                    <button type="button" class="btn btn-sm btn-outline-primary ms-auto" id="refreshCaptcha">
                         <i class="bi bi-arrow-clockwise"></i>
                     </button>
                 </div>
-                <div class="math-question">What is <span id="mathQuestion">10 + 5</span>?</div>
-                <input type="number" class="form-control mt-2" placeholder="Enter the answer" id="securityAnswer">
+                <input type="number" id="captcha" name="captcha" class="form-control"
+                    placeholder="Enter the answer" required />
+                <div class="invalid-feedback">
+                    Please solve the math problem correctly.
+                </div>
             </div>
 
             <button type="submit" class="btn btn-login">
