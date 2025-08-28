@@ -124,7 +124,7 @@
     <div class="login-container">
         <h2 class="login-title">
             <i class="bi bi-shield-check me-2"></i>
-            Al-Muhajirin System
+            Makanya ganteng
         </h2>
 
         <?php if (session()->getFlashdata('error')) : ?>
