@@ -164,8 +164,8 @@
                     ?>
                     <i class="bi bi-calculator text-primary-custom"></i>
                     <span>Security Question: What is <strong id="num1"><?= $angka1 ?></strong> + <strong id="num2"><?= $angka2 ?></strong>?</span>
-                    <button type="button" class="btn btn-sm btn-outline-primary ms-auto" id="refreshCaptcha">
-                        <i class="bi bi-arrow-clockwise"></i>
+                    <!-- <button type="button" class="btn btn-sm btn-outline-primary ms-auto" id="refreshCaptcha"> -->
+                    <!-- <i class="bi bi-arrow-clockwise"></i> -->
                     </button>
                 </div>
                 <input type="number" id="captcha" name="captcha" class="form-control"
@@ -175,7 +175,7 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-login">
+            <button type="submit" class="btn mt-3 btn-login">
                 <i class="bi bi-box-arrow-in-right me-2"></i>Log In
             </button>
         </form>

@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 namespace App\Controllers\Laporan\Keuangan;
 
 use App\Controllers\BaseController;
@@ -10,7 +11,8 @@ use App\Models\Referensi\ModelJenisPenerimaan;
 use App\Models\Kesiswaan\ModelSiswa;
 use App\Models\Referensi\ModelMapingJenisPembayaran;
 use App\Models\Pengaturan\ProfilModel;
-use Mpdf\Mpdf; 
+use Mpdf\Mpdf;
+
 class LaporanKas extends BaseController
 {
     protected $modelRekeningBank;
@@ -36,7 +38,7 @@ class LaporanKas extends BaseController
         helper('tgl_indo');
         helper('terbilang');
     }
-    
+
     public function LaporanPenerimaanKas()
     {
         $tanggal = $this->request->getGet('tglAwal');   // ex: 2025-01-01
@@ -96,12 +98,12 @@ class LaporanKas extends BaseController
         ]);
 
         // Tambah watermark teks
-        $mpdf->SetWatermarkText('LH Care System');
+        $mpdf->SetWatermarkText('Al-Muhajirin System');
         $mpdf->showWatermarkText = true;
         $mpdf->watermark_font = 'DejaVuSansCondensed';
         $mpdf->watermarkTextAlpha = 0.1;
 
-        
+
         // Tulis HTML
         $mpdf->WriteHTML($html);
 
@@ -111,8 +113,8 @@ class LaporanKas extends BaseController
         $pdfContent = $mpdf->Output('', 'S'); // return sebagai string
 
         return $this->response->setContentType('application/pdf')
-                            ->setHeader('Content-Disposition', 'inline; filename="laporan-harian.pdf"')
-                            ->setBody($pdfContent);
+            ->setHeader('Content-Disposition', 'inline; filename="laporan-harian.pdf"')
+            ->setBody($pdfContent);
     }
 
 
@@ -176,12 +178,12 @@ class LaporanKas extends BaseController
         ]);
 
         // Tambah watermark teks
-        $mpdf->SetWatermarkText('LH Care System');
+        $mpdf->SetWatermarkText('Al-Muhajirin System');
         $mpdf->showWatermarkText = true;
         $mpdf->watermark_font = 'DejaVuSansCondensed';
         $mpdf->watermarkTextAlpha = 0.1;
 
-        
+
         // Tulis HTML
         $mpdf->WriteHTML($html);
 
@@ -191,9 +193,7 @@ class LaporanKas extends BaseController
         $pdfContent = $mpdf->Output('', 'S'); // return sebagai string
 
         return $this->response->setContentType('application/pdf')
-                            ->setHeader('Content-Disposition', 'inline; filename="laporan-harian.pdf"')
-                            ->setBody($pdfContent);
+            ->setHeader('Content-Disposition', 'inline; filename="laporan-harian.pdf"')
+            ->setBody($pdfContent);
     }
-
-    
 }
