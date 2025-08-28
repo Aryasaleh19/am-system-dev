@@ -171,7 +171,7 @@
                 <input type="number" id="captcha" name="captcha" class="form-control"
                     placeholder="Enter the answer" required />
                 <div class="invalid-feedback">
-                    Please solve the math problem correctly.
+                    Plis okeh.
                 </div>
             </div>
 
