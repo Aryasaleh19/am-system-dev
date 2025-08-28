@@ -124,7 +124,7 @@
     <div class="login-container">
         <h2 class="login-title">
             <i class="bi bi-shield-check me-2"></i>
-            Al-Muhajirin System Login
+            Al-Muhajirin System
         </h2>
 
         <?php if (session()->getFlashdata('error')) : ?>
@@ -171,7 +171,7 @@
                 <input type="number" id="captcha" name="captcha" class="form-control"
                     placeholder="Enter the answer" required />
                 <div class="invalid-feedback">
-                    Plis okeh.
+                    Please solve the math problem correctly.
                 </div>
             </div>
 
