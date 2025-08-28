@@ -127,7 +127,7 @@
             Al-Muhajirin System Login
         </h2>
 
-        <form>
+        <form method="post" action="<?= base_url('login') ?>">
             <div class="mb-3">
                 <label for="username" class="form-label">
                     <i class="bi bi-person me-1"></i>Username
