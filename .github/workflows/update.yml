@@ -1,0 +1,21 @@
+name: CD
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Execute remote SSH commands using key
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: bimbel.ip-dynamic.com
+          username: root
+          key: ${{ secrets.SSH_KEY }}
+          port: 22
+          script: |
+            cd /www/wwwroot/am-system-dev
+            git pull
