@@ -16,7 +16,9 @@ class App extends BaseConfig
      *
      * E.g., http://example.com/
      */
-    public string $baseURL = 'https://dev-almuhajirin.mokaraja.net/';
+    public string $baseURL = 'https://almuhajirin.ip-dynamic.net/';
+
+    // public string $baseURL = 'https://amsystem.test/';
 
     /**
      * Allowed Hostnames in the Site URL other than the hostname in the baseURL.
