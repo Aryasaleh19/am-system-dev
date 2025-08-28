@@ -147,7 +147,7 @@
                     <i class="bi bi-lock me-1"></i>Password
                 </label>
                 <div class="input-group">
-                    <input type="password" class="form-control" id="password" value="........">
+                    <input type="password" class="form-control" name="password" id="password" value="........">
                     <button class="btn password-toggle" type="button" onclick="togglePassword()">
                         <i class="bi bi-eye"></i>
                     </button>
