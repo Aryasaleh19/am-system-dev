@@ -4,9 +4,9 @@
     <br>
     <h2 style="margin:0;">YAYASAN AL-MUHAJIRIN GORONTALO</h2>
     <p style="margin:0; font-size:12px;">
-        Jln. Trans Sulawesi Kec. Limboto Kab. Gorontalo<br>
-        Telp: 0813436741945 | Fax: 0435-08888<br>
-        Email: yayasanalmuhajiringorontalo@gmail.com
+        JL. L PALALU, ISIMU RAYA, Kec. Tibawa, Kab. Gorontalo<br>
+        Telp: 085399618267 | Fax: 0435-08888<br>
+        Email: almuhajiringorontalo@gmail.com
     </p>
 </div>
 <hr style="margin:0; border-color: #000;">
