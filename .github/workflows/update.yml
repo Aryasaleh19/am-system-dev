@@ -29,5 +29,5 @@ jobs:
           key: ${{ secrets.SSH_KEY2 }}
           port: 65002
           script: |
-            cd /public_html/public_html/partner/amsystem
+            cd /home/u884903943/domains/mokaraja.net/public_html/partner/amsystem
             git pull
