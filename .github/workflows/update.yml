@@ -9,16 +9,25 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
+    # runs-on: ubuntu-22.04
 
     steps:
       - name: Execute remote SSH commands using key
         uses: appleboy/ssh-action@v1.0.0
+        # with:
+        #   host: bimbel.ip-dynamic.com
+        #   username: root
+        #   key: ${{ secrets.SSH_KEY }}
+        #   port: 22
+        #   script: |
+        #     cd /www/wwwroot/am-system-dev
+        #     git pull
         with:
-          host: bimbel.ip-dynamic.com
-          username: root
-          key: ${{ secrets.SSH_KEY }}
-          port: 22
+          host: 195.35.55.102
+          username: u884903943
+          key: ${{ secrets.SSH_KEY2 }}
+          port: 65002
           script: |
-            cd /www/wwwroot/am-system-dev
+            cd /home/u884903943/domains/mokaraja.net/public_html/partner/amsystem
             git pull
