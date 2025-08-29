@@ -46,25 +46,12 @@ class Login extends Controller
                         ->get()
                         ->getRowArray();
 
-            // ambil profil lembaga
-            $lembaga = $model->db->table('pengaturan_profil')
-                        ->where('ID', 1)
-                        ->get()
-                        ->getRowArray();
-
             $session->set([
                 'user_id'       => $user['PEGAWAI_ID'],
                 'nama'          => $user['NAMA'],
                 'login'         => true,
                 'jenis_kelamin' => $pegawai['JENIS_KELAMIN'] ?? 'L', // default laki-laki
-                'jabatan'       => $pegawai['JABATAN'] ?? 'Super Admin', // default role
-                'NAMA_LEMBAGA'  => $lembaga['NAMA_LENGKAP'] ?? '', // default role
-                'NAMA_SINGKAT'  => $lembaga['NAMA_SINGKAT'] ?? '', // default role
-                'ALAMAT'  => $lembaga['ALAMAT'] ?? '', // default role
-                'LOGO'  => $lembaga['LOGO'] ?? '', // default role
-                'TELP'  => $lembaga['TELP'] ?? '', // default role
-                'FAX'  => $lembaga['FAX'] ?? '', // default role
-                'EMAIL'  => $lembaga['EMAIL'] ?? '', // default role
+                'jabatan'       => $pegawai['JABATAN'] ?? 'Super Admin' // default role
             ]);
 
             return redirect()->to('/dashboard'); 

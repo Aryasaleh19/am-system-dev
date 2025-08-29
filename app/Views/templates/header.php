@@ -8,7 +8,7 @@
     <title><?= $title ?? 'Dashboard' ?></title>
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="<?= base_url() ?>/assets/img/logo-lh.jpg" />
+    <link rel="icon" type="image/x-icon" href="<?= base_url() ?><?= session()->get('LOGO') ?>" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

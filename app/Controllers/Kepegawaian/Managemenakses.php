@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 namespace App\Controllers\Kepegawaian;
 
 use App\Controllers\BaseController;
@@ -42,8 +43,8 @@ class Managemenakses extends BaseController
         $this->pendidikanModel   = new ModelPendidikan();
         $this->penggunaModel     = new ModelPengguna();
         $this->aksesModel        = new ModelAkses();
-        $this->gedungModel       = new ModelGedung(); 
-        $this->mapingModel       = new Model_maping_modul(); 
+        $this->gedungModel       = new ModelGedung();
+        $this->mapingModel       = new Model_maping_modul();
         $this->modulModel        = new ModelModul();
         $this->groupmodelModel   = new Model_group_modul();
         $this->ruanganModel   = new ModelRuangan();
@@ -229,7 +230,7 @@ class Managemenakses extends BaseController
         return view('kepegawaian/managemenakses/modals_form_akun', [
             'jabatan'        => $jabatan,
             'modulByGroup'   => $modulByGroup,
-            'ruanganByGedung'=> $ruanganByGedung,
+            'ruanganByGedung' => $ruanganByGedung,
             'aksesTerpilih'  => $aksesTerpilih,
             'pegawaiId'      => $pegawaiId
         ]);
@@ -258,7 +259,7 @@ class Managemenakses extends BaseController
         foreach ($post as $key => $value) {
             if (strpos($key, 'JABATAN_') === 0) {
                 $dataInsert[] = [
-                    'ID' => mt_rand(111111,999999),
+                    'ID' => mt_rand(111111, 999999),
                     'PEGAWAI_ID' => $pegawaiId,
                     'JABATAN_ID' => $value,
                     'MODUL_ID'   => null,
@@ -267,7 +268,7 @@ class Managemenakses extends BaseController
             }
             if (strpos($key, 'MODUL_') === 0) {
                 $dataInsert[] = [
-                    'ID' => mt_rand(111111,999999),
+                    'ID' => mt_rand(111111, 999999),
                     'PEGAWAI_ID' => $pegawaiId,
                     'JABATAN_ID' => null,
                     'MODUL_ID'   => $value,
@@ -276,7 +277,7 @@ class Managemenakses extends BaseController
             }
             if (strpos($key, 'RUANGAN_') === 0) {
                 $dataInsert[] = [
-                    'ID' => mt_rand(111111,999999),
+                    'ID' => mt_rand(111111, 999999),
                     'PEGAWAI_ID' => $pegawaiId,
                     'JABATAN_ID' => null,
                     'MODUL_ID'   => null,
@@ -288,6 +289,8 @@ class Managemenakses extends BaseController
         if (!empty($dataInsert)) {
             $aksesModel->insertBatch($dataInsert);
         }
+
+        refreshUserSession(session('user_id'));
 
         return $this->response->setJSON([
             'status'  => true,
@@ -311,9 +314,4 @@ class Managemenakses extends BaseController
         }
         return $batchInsert;
     }
-
-
-
-
-
 }
