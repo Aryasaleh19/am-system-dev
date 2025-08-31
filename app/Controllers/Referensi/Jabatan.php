@@ -6,6 +6,7 @@ use App\Models\Referensi\ModelJabatan;
 use App\Models\Referensi\ModelJabatanPenerimaan;
 use App\Models\Referensi\ModelJabatanTupoksi;
 use App\Models\Kepegawaian\ModelPengguna;
+use App\Models\Referensi\ModelJabatanAbsensi;
 
 class Jabatan extends BaseController
 {
@@ -13,6 +14,7 @@ class Jabatan extends BaseController
     protected $modelJabatanPenerimaan;
     protected $modelPengguna;
     protected $modelJabatanTupoksi;
+    protected $modelJabatanAbsensi;
 
     public function __construct()
     {
@@ -20,6 +22,7 @@ class Jabatan extends BaseController
         $this->modelJabatanPenerimaan = new ModelJabatanPenerimaan();
         $this->modelPengguna = new ModelPengguna();
         $this->modelJabatanTupoksi = new ModelJabatanTupoksi();
+        $this->modelJabatanAbsensi = new ModelJabatanAbsensi();
     }
 
     public function index()
@@ -258,6 +261,99 @@ class Jabatan extends BaseController
 
         return view('referensi/jabatan/tupoksi', $data);
     }
+    
+    public function absensi()
+    {
+        $idJabatan = $this->request->getGet('id'); // ambil id jabatan dari ?id=...
+        $data = [];
+
+        if ($idJabatan) {
+            $data['id_jabatan'] = $idJabatan;
+
+            // ambil nama jabatan
+            $jabatanRow = $this->modelJabatan->where('ID', $idJabatan)->first();
+            $data['jabatan'] = $jabatanRow ? $jabatanRow['JABATAN'] : '';
+
+            // ambil data absensi yang sudah ada untuk jabatan ini
+            $absensiRows = $this->modelJabatanAbsensi
+                                ->where('ID_JABATAN', $idJabatan)
+                                ->findAll();
+
+            // susun array agar mudah diakses berdasarkan hari
+            $absensiByHari = [];
+            foreach ($absensiRows as $row) {
+                $absensiByHari[$row['HARI']] = $row;
+            }
+
+            $data['absensi'] = $absensiByHari;
+        }
+
+        return view('referensi/jabatan/absensi', $data);
+    }
+
+
+    public function saveAbsensi()
+    {
+        if(!$this->request->isAJAX()){
+            return redirect()->back();
+        }
+
+        $request = $this->request;
+        $id_jabatan = $request->getPost('id_jabatan');
+        $hariList   = $request->getPost('hari');     
+        $datangList = $request->getPost('datang');  
+        $pulangList = $request->getPost('pulang');  
+        $statusList = $request->getPost('status');  
+        $oleh       = session()->get('user_id');
+
+        if(!$id_jabatan || !$hariList){
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => 'Data tidak lengkap!'
+            ]);
+        }
+
+        try {
+            foreach($hariList as $i => $hari){
+                $datang = $datangList[$i];
+                $pulang = $pulangList[$i];
+                $status = $statusList[$i];
+
+                $cek = $this->modelJabatanAbsensi
+                            ->where('ID_JABATAN', $id_jabatan)
+                            ->where('HARI', $hari)
+                            ->first();
+
+                $data = [
+                    'ID_JABATAN' => $id_jabatan,
+                    'HARI'       => $hari,
+                    'DATANG'     => $datang,
+                    'PULANG'     => $pulang,
+                    'STATUS'     => $status,
+                    'OLEH'       => $oleh
+                ];
+
+                if($cek){
+                    $this->modelJabatanAbsensi->update($cek['ID'], $data);
+                } else {
+                    $this->modelJabatanAbsensi->insert($data);
+                }
+            }
+
+            return $this->response->setJSON([
+                'status' => 'success',
+                'message' => 'Pengaturan absensi berhasil disimpan!'
+            ]);
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => 'Terjadi kesalahan: ' . $e->getMessage()
+            ]);
+        }
+    }
+
+
+
 
 
     // khusus proses tupoksi

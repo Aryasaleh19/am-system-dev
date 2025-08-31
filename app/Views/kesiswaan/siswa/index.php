@@ -37,7 +37,7 @@
                         <thead>
                             <tr>
                                 <th class="text-center">NO</th>
-                                <th class="text-center">NO. INDUK<br>YAYASAN</th>
+                                <th class="text-center">NO. INDUK<br>NASIONAL</th>
                                 <th class="text-center">NO. INDUK<br>SISWA</th>
                                 <th class="text-center">NAMA SISWA</th>
                                 <th class="text-center">ANGKATAN</th>

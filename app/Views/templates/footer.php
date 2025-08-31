@@ -3,6 +3,9 @@
 <script src="<?= base_url('template/assets/js/config.js') ?>"></script>
 
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.8/jquery.inputmask.min.js"></script>
+
+
 <!-- <script src="<?= base_url('template/') ?>assets/vendor/libs/jquery/jquery.js"></script> -->
 <script src="<?= base_url('template/') ?>assets/vendor/libs/popper/popper.js"></script>
 <script src="<?= base_url('template/') ?>assets/vendor/js/bootstrap.js"></script>
@@ -102,7 +105,7 @@ function showToast(title, message, type = 'success') {
     // Tambahkan class show untuk animasi slide-down
     setTimeout(() => {
         toastEl.classList.add('show');
-    }, 700000);
+    }, 1500);
 
     // Auto hide
     setTimeout(() => {
@@ -115,7 +118,7 @@ function showToast(title, message, type = 'success') {
             if ($.fn.DataTable.isDataTable('#programTable')) {
                 $('#programTable').DataTable().ajax.reload(null, false);
             }
-        }, 700000); // delay agar animasi selesai
+        }, 1500); // delay agar animasi selesai
     }, duration);
 }
 

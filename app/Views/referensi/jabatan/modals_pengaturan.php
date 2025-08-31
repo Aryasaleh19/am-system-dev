@@ -21,14 +21,14 @@
                         </li>
                         <li class="nav-item shadow">
                             <button type="button" class="nav-link" role="tab" data-bs-target="tupoksi">
-                                🧾 Tupoksi
+                                ✔ Tupoksi
                             </button>
                         </li>
-                        <!-- <li class="nav-item">
-                            <button type="button" class="nav-link" role="tab" data-bs-target="file">
-                                📁 File
+                        <li class="nav-item">
+                            <button type="button" class="nav-link" role="tab" data-bs-target="absensi">
+                                🗓️ Absensi
                             </button>
-                        </li> -->
+                        </li>
                     </ul>
 
                     <!-- Satu container content saja -->
@@ -40,6 +40,30 @@
 </div>
 
 <script>
+function reloadAbsensiTab() {
+    const $container = $('#tabContent');
+    const idJabatan = $('#modalPengaturan #id').val();
+
+    // jika tab saat ini bukan absensi → switch dulu
+    if ($container.data('current-tab') !== 'absensi') {
+        $('.nav-tabs button').removeClass('active');
+        $('.nav-tabs button[data-bs-target="absensi"]').addClass('active');
+    }
+
+    // load konten tab Absensi
+    $.get("<?= base_url('referensi/jabatan/absensi') ?>", {
+        id: idJabatan
+    }, function(data) {
+        $container.html(data);
+
+        // re-inisialisasi inputmask / JS lainnya jika perlu
+        if (typeof initAbsensi === 'function') initAbsensi();
+    });
+
+    // set current-tab
+    $container.data('current-tab', 'absensi');
+}
+
 $(document).ready(function() {
     const $container = $('#tabContent');
 
@@ -52,7 +76,7 @@ $(document).ready(function() {
         let url = '';
         if (tab === 'penerimaan') url = "<?= base_url('referensi/jabatan/penerimaan') ?>";
         if (tab === 'tupoksi') url = "<?= base_url('referensi/jabatan/tupoksi') ?>";
-        if (tab === 'file') url = "<?= base_url('referensi/jabatan/file') ?>";
+        if (tab === 'absensi') url = "<?= base_url('referensi/jabatan/absensi') ?>";
 
         if (url) {
             $.get(url, {

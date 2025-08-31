@@ -16,9 +16,9 @@
                             <!-- Kolom 1 -->
                             <div class="col-md-4">
                                 <div class="mb-3">
-                                    <label for="NIP" class="form-label">NIP</label>
+                                    <label for="NIP" class="form-label">NIPY</label>
                                     <input type="text" class="form-control" name="NIP" id="NIP"
-                                        placeholder="Masukkan NIP" required>
+                                        placeholder="Nomor Induk Pegawai Yayasan" required>
                                 </div>
 
                                 <div class="mb-3">
