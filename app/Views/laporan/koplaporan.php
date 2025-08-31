@@ -1,7 +1,10 @@
 <div style="text-align: center;">
-    <img src="assets/img/<?= session()->get('LOGO'); ?>" alt="Logo"
+    <img src="<?= base_url() . session()->get('LOGO'); ?>" alt="Logo"
         style="max-width:70px; max-height:70px; border:none;">
     <br>
+
+    <!-- <img src="/assets/img/1756232933_4301eddc1a054aee1928.jpg" alt=""> -->
+    <?= base_url() . session()->get('LOGO') ?>
     <h2 style="margin:0;"><?= session()->get('NAMA_LEMBAGA'); ?></h2>
     <p style="margin:0; font-size:12px;">
         <?= session()->get('ALAMAT'); ?><br>
