@@ -1,6 +1,6 @@
 <div class="card shadow-none bg-transparent border border-info mb-3">
     <div class="card-body p-2">
-        <input type="hidden" id="inputNis" name="inputNis" class="form-control" value="L046">
+        <input type="hidden" id="inputNis" name="inputNis" class="form-control" value="<?= $nis ?>">
         <strong class="card-title">Info!</strong>
         <span class="card-text">Kartu Kontrol digunakan untuk memonitoring aktivitas pembayaran tagihan siswa.</span>
     </div>

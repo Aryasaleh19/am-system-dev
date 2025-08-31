@@ -41,14 +41,14 @@
                                     <input type="file" class="form-control" id="logo" name="logo">
                                 </div>
                                 <?php if (!empty($profil['LOGO'])): ?>
-                                    <div class="mt-2" id="logoPreviewContainer">
-                                        <img id="logoPreview" src="<?= base_url($profil['LOGO']) ?>" alt="Preview Logo"
-                                            width="120">
-                                    </div>
+                                <div class="mt-2" id="logoPreviewContainer">
+                                    <img id="logoPreview" src="<?= base_url($profil['LOGO']) ?>" alt="Preview Logo"
+                                        width="120">
+                                </div>
                                 <?php else: ?>
-                                    <div class="mt-2" id="logoPreviewContainer" style="display:none;">
-                                        <img id="logoPreview" src="" alt="Preview Logo" width="120">
-                                    </div>
+                                <div class="mt-2" id="logoPreviewContainer" style="display:none;">
+                                    <img id="logoPreview" src="" alt="Preview Logo" width="120">
+                                </div>
                                 <?php endif; ?>
                                 <!-- Preview -->
                                 <div class="mt-2" id="logoPreviewContainer" style="display:none;">
@@ -106,61 +106,61 @@
 
 
 <script>
-    $(document).ready(function() {
-        disableAutocomplete();
+$(document).ready(function() {
+    disableAutocomplete();
 
-        $('#addBtn').on('click', function(e) {
-            e.preventDefault();
+    $('#addBtn').on('click', function(e) {
+        e.preventDefault();
 
-            let formData = new FormData();
-            formData.append('id', 1); // ID tetap 1
-            formData.append('nama_lengkap', $('#nama_lengkap').val());
-            formData.append('nama_singkat', $('#nama_singkat').val());
-            formData.append('alamat', $('#alamat').val());
-            formData.append('telp', $('#telp').val());
-            formData.append('fax', $('#fax').val());
-            formData.append('email', $('#email').val());
+        let formData = new FormData();
+        formData.append('id', 1); // ID tetap 1
+        formData.append('nama_lengkap', $('#nama_lengkap').val());
+        formData.append('nama_singkat', $('#nama_singkat').val());
+        formData.append('alamat', $('#alamat').val());
+        formData.append('telp', $('#telp').val());
+        formData.append('fax', $('#fax').val());
+        formData.append('email', $('#email').val());
 
-            const logo = $('#logo')[0].files[0];
-            if (logo) {
-                formData.append('logo', logo);
-            }
+        const logo = $('#logo')[0].files[0];
+        if (logo) {
+            formData.append('logo', logo);
+        }
 
-            $.ajax({
-                url: "<?= base_url('pengaturan/profil/update') ?>", // pastikan route ini benar
-                type: 'POST',
-                data: formData,
-                processData: false,
-                contentType: false,
-                dataType: 'json',
-                success: function(response) {
-                    if (response.status === 'success') {
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Berhasil',
-                            text: response.message,
-                            timer: 2000,
-                            showConfirmButton: false
-                        });
-                        location.reload();
-                    } else {
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Gagal',
-                            text: response.message
-                        });
-                    }
-                },
-                error: function(xhr) {
+        $.ajax({
+            url: "<?= base_url('pengaturan/profil/update') ?>", // pastikan route ini benar
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            dataType: 'json',
+            success: function(response) {
+                if (response.status === 'success') {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Berhasil',
+                        text: response.message,
+                        timer: 2000,
+                        showConfirmButton: false
+                    });
+                    location.reload();
+                } else {
                     Swal.fire({
                         icon: 'error',
-                        title: 'Error',
-                        text: 'Gagal menghubungi server'
+                        title: 'Gagal',
+                        text: response.message
                     });
                 }
-            });
+            },
+            error: function(xhr) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Gagal menghubungi server'
+                });
+            }
         });
     });
+});
 </script>
 
 <?= $this->endSection() ?>

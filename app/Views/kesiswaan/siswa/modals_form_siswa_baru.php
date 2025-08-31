@@ -18,10 +18,10 @@
                     <div class="row g-1">
                         <!-- Baris 1 -->
                         <div class="col-md-6">
-                            <label for="nis" class="form-label">No. Induk Yayasan <span
+                            <label for="nis" class="form-label">No. Induk Siswa Yayasan <span
                                     class="text-danger">*</span></label>
-                            <input type="text" class="form-control" id="nis" name="NIS" placeholder="Nomor Yayasan"
-                                readonly required>
+                            <input type="text" class="form-control" id="nis" name="NIS"
+                                placeholder="Nomor Induk Siswa Yayasan" required>
                         </div>
                         <div class="col-md-6">
                             <label for="nama" class="form-label">Nama Lengkap <span class="text-danger">*</span></label>

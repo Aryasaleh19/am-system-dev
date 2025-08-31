@@ -1,5 +1,4 @@
-<?php
-
+<?php 
 namespace App\Controllers\Pengaturan;
 
 use App\Controllers\BaseController;
@@ -29,7 +28,7 @@ class Profil extends BaseController
         $id = 1; // selalu update ID = 1
 
         $profilLama = $model->find($id);
-
+        
         $data = [
             'NAMA_LENGKAP' => $this->request->getPost('nama_lengkap'),
             'NAMA_SINGKAT' => $this->request->getPost('nama_singkat'),
@@ -54,10 +53,12 @@ class Profil extends BaseController
         $success = $model->update($id, $data);
 
         refreshUserSession(session('user_id'));
-
         return $this->response->setJSON([
             'status' => $success ? 'success' : 'error',
             'message' => $success ? 'Data berhasil diperbarui.' : 'Gagal memperbarui data.'
         ]);
     }
+
 }
+
+?>

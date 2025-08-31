@@ -26,6 +26,7 @@ class Siswa extends BaseController
         $this->modelMapingJenisPembayaran = new ModelMapingJenisPembayaran();
         $this->modelSiswaSekolah = new ModelSiswaSekolah();
         $this->modelPrestasiKelas = new ModelPrestasiKelas();
+        helper('Nis');
     }
 
     public function index()
@@ -114,9 +115,6 @@ class Siswa extends BaseController
         return view('kesiswaan/siswa/detail/orangtua');
     }
 
-    
-
-
     public function pendaftaran()
     {
         $nis = $this->request->getGet('nis');
@@ -176,7 +174,7 @@ class Siswa extends BaseController
         $status   = $this->request->getPost('status');
 
         // Validasi sederhana
-        if (!$nis || !$idRiwayatSekolah || !$ruanganId || !$kelas || !$tmt || !$status) {
+        if (!$nis || !$idRiwayatSekolah || !$ruanganId || !$tmt || !$status) {
             return $this->response->setJSON([
                 'status' => 'error',
                 'message' => 'Semua field wajib diisi'
@@ -226,7 +224,7 @@ class Siswa extends BaseController
         $status        = $this->request->getPost('status');
 
         // Validasi sederhana
-        if (!$idPrestasi || !$nis || !$idRiwayatSekolah || !$ruanganId || !$kelas || !$tmt || !$status) {
+        if (!$idPrestasi || !$nis || !$idRiwayatSekolah || !$ruanganId || !$tmt || !$status) {
             return $this->response->setJSON([
                 'status' => 'error',
                 'message' => 'Semua field wajib diisi'
@@ -599,30 +597,32 @@ class Siswa extends BaseController
             return $this->response->setStatusCode(403)->setBody('Forbidden');
         }
 
-        $nis = $this->request->getPost('NIS');
-        $sekolah_id = $this->request->getPost('SEKOLAH_ID');
+        $nis         = $this->request->getPost('NIS');
+        $sekolah_id  = $this->request->getPost('SEKOLAH_ID');
         $angkatan_id = $this->request->getPost('ANGKATAN_ID');
-        $tanggal = $this->request->getPost('TANGGAL');
-        
+        $tanggal     = $this->request->getPost('TANGGAL');
+        $nis_new     = $this->request->getPost('NISNEW');
+
         if (!$nis || !$sekolah_id || !$angkatan_id) {
             return $this->response->setJSON(['status' => false, 'message' => 'Data tidak lengkap']);
         }
 
         try {
-            // 1️⃣ Set semua riwayat sekolah siswa ini menjadi tidak aktif
+            // nonaktifkan riwayat lama
             $this->modelSiswaSekolah
                 ->where('NIS', $nis)
                 ->set(['STATUS' => 0])
                 ->update();
 
-            // 2️⃣ Insert data baru dengan STATUS = 1
+            // insert data baru
             $data = [
+                'NIS_NEW'      => $nis_new,
                 'ANGKATAN_NEW' => $angkatan_id,
-                'NIS'         => $nis,
-                'SEKOLAH_ID'  => $sekolah_id,
-                'STATUS'      => 1,
-                'OLEH'        => session()->get('user_id') ?? null,
-                'TANGGAL'     => $tanggal,
+                'NIS'          => $nis,
+                'SEKOLAH_ID'   => $sekolah_id,
+                'STATUS'       => 1,
+                'OLEH'         => session()->get('user_id') ?? null,
+                'TANGGAL'      => $tanggal,
             ];
 
             $this->modelSiswaSekolah->insert($data);
@@ -635,7 +635,6 @@ class Siswa extends BaseController
             ]);
         }
     }
-
 
     public function riwayatSekolahTable()
     {

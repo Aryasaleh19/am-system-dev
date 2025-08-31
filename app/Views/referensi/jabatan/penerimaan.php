@@ -54,7 +54,7 @@
 <script>
 $(document).ready(function() {
     disableAutocomplete();
-    
+
     const idJabatan = $('#id').val(); // hidden input jabatan
     $('#id').val(idJabatan); // pastikan selalu terisi
 

@@ -12,6 +12,7 @@
                         <thead>
                             <tr>
                                 <th class="text-center">NO.</th>
+                                <th class="text-center">NIPY</th>
                                 <th class="text-center">NIK</th>
                                 <th class="text-center">NAMA</th>
                                 <th class="text-center">KELAMIN</th>
@@ -51,6 +52,10 @@ $(document).ready(function() {
                 render: function(data, type, row, meta) {
                     return meta.row + meta.settings._iDisplayStart + 1;
                 }
+            },
+            {
+                data: 'NIP',
+                className: 'text-center'
             },
             {
                 data: 'NIK',

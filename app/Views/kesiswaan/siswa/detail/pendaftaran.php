@@ -7,7 +7,7 @@
                 <form id="formpendaftaranSekolahSiswa">
                     <div class="row g-1">
                         <div class="form-group">
-                            <label for="nis" class="form-label">NIS <span class="text-danger">*</span></label>
+                            <label for="nis" class="form-label">NIY <span class="text-danger">*</span></label>
                             <input type="text" class="form-control bg-white" value="<?= $siswa['NIS'] ?>" id="nis"
                                 name="NIS" placeholder="Nomor Induk Siswa" readonly required>
                         </div>
@@ -29,7 +29,21 @@
                         </div>
                         <div class="form-group">
                             <label for="angkatan_new">Tahun Angkatan</label>
-                            <input type="number" name="angkatan_new" id="angkatan_new" class="form-control" required>
+                            <input type="number" name="angkatan_new" id="angkatan_new" class="form-control"
+                                placeholder="Thn. Angkatan Baru" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="mode_input">Mode NIS Baru</label>
+                            <select id="mode_input" class="form-control">
+                                <option value="auto">Otomatis</option>
+                                <option value="manual">Manual</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="nis_new">NIS Baru</label>
+                            <input type="text" name="nis_new" id="nis_new" class="form-control"
+                                placeholder="NIS Baru akan dibuat oleh sistem" readonly>
                         </div>
                         <button type="button" class="btn btn-outline-primary btn-block"
                             id="btnSimpanPendaftaranPendidikan">[ <i class="fa fa-save" aria-hidden="true"></i>
@@ -68,6 +82,29 @@
 </div>
 <?php endif; ?>
 <script src="<?= base_url('js/referensi.js') ?>"></script>
+
+<script>
+(function() {
+    const modeInput = document.getElementById("mode_input");
+    const nisInput = document.getElementById("nis_new");
+
+    modeInput.addEventListener("change", function() {
+        if (this.value === "manual") {
+            nisInput.removeAttribute("readonly");
+            nisInput.setAttribute("required", "required");
+            nisInput.value = "";
+            nisInput.placeholder = "SIlahkan input NIS Baru secara manual";
+            nisInput.focus();
+        } else {
+            nisInput.setAttribute("readonly", "readonly");
+            nisInput.removeAttribute("required");
+            nisInput.value = "";
+            nisInput.placeholder = "NIS Baru akan dibuat oleh sistem";
+        }
+    });
+})();
+</script>
+
 
 <script>
 function reloadRiwayatSekolahTable(callback) {
@@ -232,7 +269,8 @@ $(document).ready(function() {
             NIS: $('#nis').val(),
             SEKOLAH_ID: $('#id_sekolah').val(),
             ANGKATAN_ID: $('#angkatan_new').val(),
-            TANGGAL: $('#tanggal').val()
+            TANGGAL: $('#tanggal').val(),
+            NISNEW: $('#nis_new').val(),
         };
 
         $('#loader').show();
