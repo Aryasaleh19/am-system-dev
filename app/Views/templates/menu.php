@@ -24,6 +24,7 @@
          </li>
 
          <!-- Layouts -->
+         <!-- Layouts -->
          <li
              class="menu-item <?= set_active(['pengaturan/group_modul', 'pengaturan/modul', 'pengaturan/manajemen_modul', 'pengaturan/profil', 'pengaturan/managemen-modul']) ?>">
              <a href="javascript:void(0);" class="menu-link menu-toggle">
@@ -96,7 +97,7 @@
              </ul>
          </li>
          <li
-             class="menu-item <?= set_active(['kepegawaian/pegawai', 'kepegawaian/managemenakses', 'kepegawaian/mutasi']) ?>">
+             class="menu-item <?= set_active(['kepegawaian/pegawai', 'kepegawaian/managemenakses', 'kepegawaian/mutasi', 'kepegawaian/absensi']) ?>">
              <a href="javascript:void(0);" class="menu-link menu-toggle">
                  <i class="menu-icon tf-icons bx bx-list-ul"></i>
                  <div data-i18n="Layouts">Kepegawaian</div>
@@ -112,18 +113,18 @@
                          <div data-i18n="Without menu">🛡️ Managemen Akses</div>
                      </a>
                  </li>
-                 <li class="menu-item <?= set_active('kepegawaian/mutasi') ?>">
+                 <!-- <li class="menu-item <?= set_active('kepegawaian/mutasi') ?>">
                      <a href="<?= base_url('kepegawaian/mutasi') ?>" class="menu-link">
                          <div data-i18n="Without navbar">🚶‍♂️ Mutasi Pegawai</div>
                      </a>
-                 </li>
-                 <li class="menu-item <?= set_active('kepegawaian/jadwal') ?>">
-                     <a href="<?= base_url('kepegawaian/jadwal') ?>" class="menu-link">
-                         <div data-i18n="Without navbar">📝 Jadwal Kegiatan</div>
+                 </li> -->
+                 <li class="menu-item <?= set_active('kepegawaian/absensi') ?>">
+                     <a href="<?= base_url('kepegawaian/absensi') ?>" class="menu-link">
+                         <div data-i18n="Without navbar">📲 Absensi</div>
                      </a>
                  </li>
                  <li class="menu-item <?= set_active('kepegawaian/laporanpegawai') ?>">
-                     <a href="<?= base_url('kepegawaian/laporanpegawai') ?>" class="menu-link">
+                     <a href="javascript:void(0);" class="menu-link">
                          <div data-i18n="Container">📊 Laporan</div>
                      </a>
                  </li>
@@ -147,7 +148,7 @@
                      </a>
                  </li>
                  <li class="menu-item">
-                     <a href="<?= base_url('perencanaan/program') ?>" class="menu-link">
+                     <a href="javascript:void(0);" class="menu-link">
                          <div data-i18n="Without navbar">📊 Laporan</div>
                      </a>
                  </li>

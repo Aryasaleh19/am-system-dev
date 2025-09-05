@@ -13,6 +13,9 @@
                             <tr>
                                 <th class="text-center">ID</th>
                                 <th class="text-center">GEDUNG</th>
+                                <th class="text-center">LATITUDE</th>
+                                <th class="text-center">LONGITUDE</th>
+                                <th class="text-center">MAX.JARAK<br>(Meter)</th>
                                 <th class="text-center">JML. RUANGAN</th>
                                 <th class="text-center">STATUS</th>
                                 <th class="text-center">AKSI</th>
@@ -54,6 +57,16 @@ $(document).ready(function() {
             },
             {
                 data: 'GEDUNG'
+            },
+            {
+                data: 'LATITUDE'
+            },
+            {
+                data: 'LONGITUDE'
+            },
+            {
+                data: 'MAXJARAK',
+                class: 'text-center'
             },
             {
                 data: 'JML_RUANGAN',
@@ -102,6 +115,9 @@ $(document).ready(function() {
                 $('#gedungModalLabel').text('Tambah Group Modul');
                 $('#ID').val('');
                 $('#MODUL').val('');
+                $('#LATITUDE').val('');
+                $('#LONGITUDE').val('');
+                $('#MAXJARAK').val('');
                 $('#STATUS').val('1');
 
                 modal.show();
@@ -134,6 +150,9 @@ $(document).ready(function() {
             $('#gedungModalLabel').text('Edit Group Modul');
             $('#id').val(data.ID);
             $('#gedung').val(data.GEDUNG);
+            $('#latitude').val(data.LATITUDE);
+            $('#longitude').val(data.LONGITUDE);
+            $('#maxjarak').val(data.MAXJARAK);
             $('#status').val(data.STATUS);
             const modalEl = document.getElementById('gedungModal');
             const modal = new bootstrap.Modal(modalEl);

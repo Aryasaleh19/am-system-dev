@@ -2,7 +2,7 @@
 <div class="modal fade" id="gedungModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="gedungModalLabel" aria-hidden="true">
 
-    <div class="modal-dialog modal-dialog-centered modal-sm">
+    <div class="modal-dialog modal-dialog-centered">
         <!-- ukuran besar -->
         <div class="modal-content">
             <div class="modal-header">
@@ -12,12 +12,27 @@
                 <input type="hidden" name="id" id="id">
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="gedung" class="form-label">Nama Gedung</label>
+                        <label for="gedung" class="form-label">Nama Gedung</label><sup class="text-danger">*</sup>
                         <input type="text" class="form-control" name="gedung" id="gedung"
                             placeholder="Masukkan Nama Gedung" required>
                     </div>
                     <div class="mb-3">
-                        <label for="status" class="form-label">Status</label>
+                        <label for="latitude" class="form-label">Latitude</label>
+                        <input type="text" class="form-control" name="latitude" id="latitude"
+                            placeholder="Titik Maps Absensi (Latitude)">
+                    </div>
+                    <div class="mb-3">
+                        <label for="longitude" class="form-label">Longitude</label>
+                        <input type="text" class="form-control" name="longitude" id="longitude"
+                            placeholder="Titik Maps Absensi (Longitude)">
+                    </div>
+                    <div class="mb-3">
+                        <label for="maxjarak" class="form-label">Max. Jarak (Meter)</label>
+                        <input type="text" class="form-control" name="maxjarak" id="maxjarak"
+                            placeholder="Maksimal jarak absensi">
+                    </div>
+                    <div class="mb-3">
+                        <label for="status" class="form-label">Status</label><sup class="text-danger">*</sup>
                         <select class="form-control form-select" name="status" id="status" required>
                             <option value="" selected>[ Pilih ]</option>
                             <option value="1">Aktif</option>

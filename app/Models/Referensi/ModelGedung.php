@@ -9,7 +9,7 @@ class ModelGedung extends Model
     protected $table      = 'm_r_gedung';
     protected $primaryKey = 'ID';
 
-    protected $allowedFields = ['GEDUNG', 'STATUS'];
+    protected $allowedFields = ['GEDUNG', 'LATITUDE', 'LONGITUDE', 'MAXJARAK', 'STATUS'];
 
     protected $useTimestamps = false;
 

@@ -68,7 +68,10 @@ class Gedung extends BaseController
     {
         $this->modelGedung->insert([
             'GEDUNG' => $this->request->getPost('gedung'),
-            'STATUS' => $this->request->getPost('STATUS')
+            'LATITUDE' => $this->request->getPost('latitude'),
+            'LONGITUDE' => $this->request->getPost('longitude'),
+            'MAXJARAK' => $this->request->getPost('maxjarak'),
+            'STATUS' => $this->request->getPost('status')
         ]);
         return $this->response->setJSON(['status' => 'saved']);
     }
@@ -76,6 +79,9 @@ class Gedung extends BaseController
     {
         $data = [
             'GEDUNG' => $this->request->getPost('gedung'),
+            'LATITUDE' => $this->request->getPost('latitude'),
+            'LONGITUDE' => $this->request->getPost('longitude'),
+            'MAXJARAK' => $this->request->getPost('maxjarak'),
             'STATUS' => $this->request->getPost('status')
         ];
         $saved = $this->modelGedung->insert($data);
@@ -114,6 +120,9 @@ class Gedung extends BaseController
         $id = $this->request->getPost('id');
         $data = [
             'GEDUNG' => $this->request->getPost('gedung'),
+            'LATITUDE' => $this->request->getPost('latitude'),
+            'LONGITUDE' => $this->request->getPost('longitude'),
+            'MAXJARAK' => $this->request->getPost('maxjarak'),
             'STATUS' => $this->request->getPost('status')
         ];
         $updated = $this->modelGedung->update($id, $data);

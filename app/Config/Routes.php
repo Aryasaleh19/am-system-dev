@@ -92,7 +92,10 @@ $routes->group('referensi/jabatan', function($routes) {
     // halaman halaman
     $routes->get('penerimaan', 'Referensi\Jabatan::penerimaan');
     $routes->get('tupoksi', 'Referensi\Jabatan::tupoksi');
-    $routes->get('file', 'Referensi\Jabatan::file');
+    $routes->get('absensi', 'Referensi\Jabatan::absensi');
+
+    // proses pengaturan absensi
+    $routes->post('saveAbsensi', 'Referensi\Jabatan::saveAbsensi'); // <-- save absensi
 
     // proses jabatan
     $routes->get('form', 'Referensi\Jabatan::form');
@@ -103,14 +106,14 @@ $routes->group('referensi/jabatan', function($routes) {
     $routes->get('delete/(:num)', 'Referensi\Jabatan::delete/$1');
 
 
-    // proses penerimaan
+    // pengaturan penerimaan
     $routes->get('formPengaturan', 'Referensi\Jabatan::formPengaturan');
     $routes->post('simpanPenerimaanJabatan', 'Referensi\Jabatan::simpanPenerimaanJabatan');
     $routes->post('updatePenerimaan', 'Referensi\Jabatan::updatePenerimaan');
     $routes->get('ajaxListPenerimaan', 'Referensi\Jabatan::ajaxListPenerimaan');
     $routes->get('deletePenerimaan/(:num)', 'Referensi\Jabatan::deletePenerimaan/$1');
     
-    // proses tupoksi
+    // pengaturan tupoksi
     $routes->get('ajaxListTupoksi', 'Referensi\Jabatan::ajaxListTupoksi');
     $routes->post('simpanTupoksiJabatan', 'Referensi\Jabatan::simpanTupoksiJabatan');
     $routes->post('updateTupoksi', 'Referensi\Jabatan::updateTupoksi');
@@ -186,6 +189,11 @@ $routes->group('kepegawaian/managemenakses', function($routes) {
     $routes->get('formakun', 'Kepegawaian\Managemenakses::formakun'); 
     $routes->get('get_akun/(:num)', 'Kepegawaian\Managemenakses::get_akun/$1');
     $routes->post('save_akses', 'Kepegawaian\Managemenakses::save_akses');
+});
+// Kepegawaian (absensi)
+$routes->group('kepegawaian/absensi', function($routes) {
+    $routes->get('/', 'Kepegawaian\Absensi::index');
+
 });
 // Kesiswaan (angkatan)
 $routes->group('kesiswaan/angkatan', function($routes) {
@@ -415,3 +423,40 @@ $routes->group('perencanaan/belanja', function($routes) {
     $routes->get('get/(:num)', 'Perencanaan\Belanja::get/$1');
     $routes->get('delete/(:num)', 'Perencanaan\Belanja::delete/$1');
 });
+
+
+// API ABSEN
+$routes->group('api/absensi', function($routes) {
+    // Auth
+    $routes->post('login', 'Api\Api::login');
+    $routes->post('update_profile', 'Api\Api::update_profile');
+    $routes->post('change_password', 'Api\Api::change_password');
+
+    $routes->get('get/lembaga', 'Api\Api::get_data_lembaga');
+    
+    $routes->post('submit', 'Api\Api::submit_absensi');
+    $routes->get('get/absen', 'Api\Api::get_absen');
+    
+    // Referensi
+    $routes->get('get/agama', 'Api\Api::get_data_agama');
+    $routes->get('get/pendidikan', 'Api\Api::get_data_pendidikan');
+    $routes->get('get/jabatan', 'Api\Api::get_data_jabatan');
+    $routes->get('get/profesi', 'Api\Api::get_data_profesi');
+    $routes->get('get/jenis-pegawai', 'Api\Api::get_data_jenis_pegawai');
+    $routes->get('get/gedung', 'Api\Api::get_data_gedung');
+    
+    $routes->get('get/absen-today', 'Api\Api::get_data_absen_pengaturan');
+    $routes->get('get/tupoksi', 'Api\Api::get_tupoksi');
+    $routes->post('submit_kinerja', 'Api\Api::submit_kinerja');
+    $routes->post('delete/kinerja', 'Api\Api::delete_kinerja');
+    $routes->get('get/get_kinerja', 'Api\Api::get_kinerja');
+    $routes->get('get/get_kinerja_by_tupoksi', 'Api\Api::get_kinerja_by_tupoksi');
+    $routes->get('get/get_kinerja_bulanan', 'Api\Api::get_kinerja_bulanan');
+    
+});
+
+
+
+
+
+
