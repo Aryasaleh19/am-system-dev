@@ -157,7 +157,7 @@
             </div>
 
             <div class="captcha-container">
-                <div class="captcha-question mb-2">
+                <div class="mb-2 captcha-question">
                     <?php
                     $angka1 = rand(1, 10);
                     $angka2 = rand(1, 10);
@@ -177,7 +177,7 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn mt-3 btn-login">
+            <button type="submit" class="mt-3 btn btn-login">
                 <i class="bi bi-box-arrow-in-right me-2"></i>Log In
             </button>
         </form>
