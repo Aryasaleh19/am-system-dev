@@ -24,7 +24,7 @@ class Filters extends BaseConfig
         'honeypot'      => Honeypot::class,
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
-        
+
         'auth'          => \App\Filters\Auth::class,
     ];
 
@@ -39,7 +39,29 @@ class Filters extends BaseConfig
             // 'honeypot',
             // 'csrf',
             // 'invalidchars',
-            'auth'
+            // 'auth',
+            'auth' => ['except' => [
+                '/',                       // halaman utama
+                'api/absensi/login',
+                'api/absensi/update_profile',
+                'api/absensi/change_password',
+                'api/absensi/get/lembaga',
+                'api/absensi/submit',          // <-- tambahkan
+                'api/absensi/get/absen',       // <-- tambahkan
+                'api/absensi/get/agama',
+                'api/absensi/get/pendidikan',
+                'api/absensi/get/jabatan',
+                'api/absensi/get/profesi',
+                'api/absensi/get/jenis-pegawai',
+                'api/absensi/get/gedung',
+
+                'api/absensi/get/absen-today',
+                'api/absensi/get/tupoksi',
+                'api/absensi/submit_kinerja',
+                'api/absensi/delete/kinerja',
+                'api/absensi/get/get_kinerja_by_tupoksi',
+                'api/absensi/get/get_kinerja_bulanan'
+            ]],
         ],
         'after' => [
             'toolbar',
